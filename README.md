@@ -1,6 +1,6 @@
 # 🌐 Laith Masri — Personal Website
 
-This is my personal lab, research, and quant model hub — built with Next.js, Tailwind CSS, and deployed via Vercel.
+This is my personal lab, research, and quant model hub; built with Next.js, Tailwind CSS, and deployed via Vercel.
 
 ## 📁 Sections
 
@@ -11,7 +11,7 @@ This is my personal lab, research, and quant model hub — built with Next.js, T
 | `/lab`      | Dev logs, experiments, raw thoughts  |
 | `/research` | Academic writeups, simulations       |
 | `/quant`    | Trading models, signals, backtests   |
-| `/code`     | Hardware, Lua, and system projects   |
+| `/roblox`   | Hardware, Lua, and system projects   |
 
 ## 🛠 Stack
 
