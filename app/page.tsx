@@ -1,3 +1,11 @@
+
+
+export const metadata = {
+  title: "Laith Masri – Quant, Engineer, Builder",
+  description: "Quantitative researcher, full-stack engineer, and circuit explorer. MEng EEE @ Aston. Building at the edge of AI, circuits, and markets.",
+}
+
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-16 flex flex-col items-center justify-center">
