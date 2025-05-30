@@ -18,7 +18,7 @@ export default function Home() {
         <a href="/lab" className="hover:underline">🧠 Lab Logs</a>
         <a href="/research" className="hover:underline">📚 Research</a>
         <a href="/quant" className="hover:underline">📈 Quant Models</a>
-        <a href="/code" className="hover:underline">⚙️ Engineering Projects</a>
+        <a href="/engineering" className="hover:underline">⚙️ Engineering Projects</a>
         <a href="/roblox" className="hover:underline">🕹 Roblox Projects</a>
 
       </nav>
