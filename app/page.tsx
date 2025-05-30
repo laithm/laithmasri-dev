@@ -10,7 +10,8 @@ export default function Home() {
       <img
         src="/favicon.png"
         alt="Laith Masri logo"
-        className="w-32 h-32 mb-8"
+        className="w-32 h-32 mb-8 hover:scale-105 transition-transform duration-300"
+
       />
 
       {/* Description */}
