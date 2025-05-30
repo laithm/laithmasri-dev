@@ -1,15 +1,4 @@
 
-
-export const metadata = {
-  title: 'Laith Masri – Quantitative Builder',
-  description: 'Personal lab and portfolio of Laith Masri.',
-  icons: {
-    icon: '/favicon.png',
-  },
-}
-
-
-
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-16 flex flex-col items-center justify-center">
