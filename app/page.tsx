@@ -8,11 +8,17 @@ export default function Home() {
 
       {/* Centered big icon */}
       <img
-        src="/favicon.png"
-        alt="Laith Masri logo"
-        className="w-32 h-32 mb-8 hover:scale-105 transition-transform duration-300"
+         src="/favicon.png"
+          alt="Laith Masri logo"
+          className="
+            w-32 h-32 mb-8 
+             transition-all duration-700 ease-out 
+             hover:rotate-[20deg] hover:scale-125 
+             hover:drop-shadow-[0_0_20px_rgba(0,255,255,0.75)] 
+            hover:saturate-200 
+             "
+/>
 
-      />
 
       {/* Description */}
       <p className="text-xl text-gray-400 mb-12 max-w-2xl text-center">
