@@ -1,9 +1,13 @@
 
 
 export const metadata = {
-  title: "Laith Masri – Quant, Engineer, Builder",
-  description: "Quantitative researcher, full-stack engineer, and circuit explorer. MEng EEE @ Aston. Building at the edge of AI, circuits, and markets.",
+  title: 'Laith Masri – Quantitative Builder',
+  description: 'Personal lab and portfolio of Laith Masri.',
+  icons: {
+    icon: '/favicon.png',
+  },
 }
+
 
 
 export default function Home() {
