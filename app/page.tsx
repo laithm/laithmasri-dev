@@ -6,22 +6,24 @@ export default function Home() {
         Laith Masri
       </div>
 
-      {/* Animated icon with pulsing ring */}
-      <div className="relative mb-8">
-        {/* Pulsing background ring */}
-        <div className="absolute inset-0 animate-ping rounded-full bg-cyan-500 opacity-20 scale-110"></div>
+      {/* Logo with conditional hover pulse */}
+      <div className="group relative mb-8">
+        {/* Pulsing ring only on hover */}
+        <div className="
+          absolute inset-0 rounded-full bg-cyan-500 opacity-20 scale-110
+          transition-all duration-700 ease-out
+          group-hover:animate-ping
+        "></div>
 
-        {/* Interactive logo */}
+        {/* Interactive icon */}
         <img
           src="/favicon.png"
           alt="Laith Masri logo"
           className="
             relative z-10
-            w-32 h-32 
-            transition-all duration-700 ease-out 
-            hover:rotate-[20deg] hover:scale-125 
-            hover:drop-shadow-[0_0_20px_rgba(0,255,255,0.75)] 
-            hover:saturate-200 
+            w-32 h-32
+            transition-transform duration-1000 ease-out
+            group-hover:rotate-[360deg] group-hover:scale-[2.5]
           "
         />
       </div>
