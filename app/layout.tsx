@@ -16,7 +16,8 @@ export const metadata = {
   title: 'Laith Masri – Quantitative Engineer',
   description: 'Engineer. Researcher. Scripter. Building at the edge of circuits, code, and capital.',
   icons: {
-    icon: '/favicon.ico', // or .png if you stick with that
+    icon: '/favicon.ico', // icon
+
   },
 }
 
