@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "mdx-js.vscode-mdx",
+    "dsznajder.es7-react-js-snippets",
+    "christian-kohler.path-intellisense",
+    "yzhang.markdown-all-in-one",
+    "heybourn.headwind",
+    "streetsidesoftware.code-spell-checker",
+    "eamodio.gitlens",
+    "mikestead.dotenv",
+    "aaron-bond.better-comments",
+    "coenraads.bracket-pair-colorizer-2",
+    "vscode-icons-team.vscode-icons",
+    "fabiospampinato.vscode-terminal",
+    "wakatime.vscode-wakatime",
+    "formulahendry.auto-rename-tag"
+  ]
+}
