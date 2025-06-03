@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main
       ref={ref}
-      className="min-h-[150vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300"
+      className="min-h-[135vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300"
     >
       {/* Top-left name */}
       <div className="fixed top-4 left-6 z-50 text-lg font-semibold opacity-70">
