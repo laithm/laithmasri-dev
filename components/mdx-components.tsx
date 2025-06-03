@@ -1,6 +1,6 @@
 import { Callout } from "@/components/mdx/Callout";
 import { CodeBlock } from "@/components/mdx/CodeBlock";
-import { YouTubeEmbed } from "@/components/mdx/YouTubeEmbed";
+import { YouTubeEmbed } from "@/components/mdx/YoutubeEmbed";
 import { Image } from "@/components/mdx/Image";
 
 export const MDXComponents = {
