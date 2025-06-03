@@ -1,13 +1,13 @@
 import { loadMdxPost } from "@/lib/loadMdxPost";
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-};
+import type { Metadata, ResolvingMetadata } from "next";
+
+interface PageProps {
+  params: { slug: string };
+}
 
 export default async function Page({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = params; // destructured to avoid sync API warning, now to do it for the rest (insert crying emoji here)
   const { content, frontmatter } = await loadMdxPost("roblox", slug);
 
   return (
@@ -19,7 +19,7 @@ export default async function Page({ params }: PageProps) {
   );
 }
 
-export async function generateStaticParams(): Promise<PageProps["params"][]> {
+export async function generateStaticParams() {
   const { listMdxSlugs } = await import("@/lib/listMdxPosts");
   const slugs = await listMdxSlugs("roblox");
   return slugs.map((slug) => ({ slug }));
