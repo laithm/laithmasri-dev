@@ -1,10 +1,7 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import ClientRoot from "@/components/ClientRoot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Laith Masri – Quantitative Engineer",
   description:
     "Engineer. Researcher. Scripter. Building at the edge of circuits, code, and capital.",
@@ -36,16 +33,7 @@ export default function RootLayout({
         className={`antialiased ${geistSans.variable} ${geistMono.variable}`}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-        >
-          <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
-            <ThemeToggle />
-            {children}
-          </div>
-        </ThemeProvider>
+        <ClientRoot>{children}</ClientRoot>
       </body>
     </html>
   );
