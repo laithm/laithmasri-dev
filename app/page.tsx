@@ -1,35 +1,62 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 export default function Home() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const logoY = useTransform(scrollYProgress, [0, 1], [0, -800]);
+  const logoScale = useTransform(scrollYProgress, [0, 1], [1, 2]);
+  const textOpacity = useTransform(scrollYProgress, [0.2, 0.4, 0.6], [0, 1, 0]);
+  const textY = useTransform(scrollYProgress, [0.2, 0.4, 0.6], [50, 0, -50]);
+
   return (
-    <main className="min-h-screen px-6 py-10 flex flex-col items-center relative bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
-      {/* Top-left corner heading */}
-      <div className="absolute top-4 left-6 text-lg font-semibold opacity-70">
+    <main
+      ref={ref}
+      className="min-h-[200vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300"
+    >
+      {/* Top-left name */}
+      <div className="fixed top-4 left-6 z-50 text-lg font-semibold opacity-70">
         Laith Masri
       </div>
 
-      {/* Logo with conditional hover pulse */}
-      <div className="relative mb-8 group">
-        <div className="absolute inset-0 bg-cyan-500 rounded-full opacity-20 transition-all duration-700 ease-out scale-110 group-hover:animate-ping"></div>
-
+      {/* Flying Logo */}
+      <motion.div
+        style={{ y: logoY, scale: logoScale }}
+        className="z-10 mt-32 mb-20"
+      >
         <img
           src="/favicon.png"
           alt="Laith Masri logo"
-          className="
-            relative z-10 w-32 h-32
-            transition-transform duration-1000 ease-out
-            group-hover:rotate-[360deg] group-hover:scale-[2.5]
-          "
+          className="w-32 h-32 drop-shadow-xl"
         />
-      </div>
+      </motion.div>
 
-      {/* Description */}
-      <p className="mb-12 max-w-2xl text-xl text-center opacity-80">
-        Engineering student @ Aston (MEng EEE). Exploring AI, circuits, and
-        financial systems through hands-on research and builds. Freelance Roblox
-        developer — scripting, system design, and game creation.
-      </p>
+      {/* Scroll-Revealed Text */}
+      <motion.div
+        style={{ opacity: textOpacity, y: textY }}
+        className="max-w-2xl text-xl text-center opacity-0"
+      >
+        <p className="mb-4">
+          Engineering student @ Aston (MEng EEE). Exploring AI, circuits, and
+          financial systems.
+        </p>
+        <p className="mb-4">
+          Passionate about building tangible systems — from silicon to strategy.
+        </p>
+        <p className="mb-12">
+          Roblox freelancer: game design, scripting, monetisation. Now stepping
+          into quant world.
+        </p>
+      </motion.div>
 
-      {/* Nav */}
-      <nav className="flex flex-col gap-6 text-lg text-center sm:flex-row">
+      {/* Static Nav at bottom */}
+      <nav className="flex flex-col gap-6 mt-24 text-lg text-center sm:flex-row">
         <a href="/lab" className="hover:underline">
           🧠 Lab Logs
         </a>
