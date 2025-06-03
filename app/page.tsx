@@ -12,8 +12,8 @@ export default function Home() {
 
   const logoY = useTransform(scrollYProgress, [0, 1], [0, -800]);
   const logoScale = useTransform(scrollYProgress, [0, 1], [1, 2]);
-  const textOpacity = useTransform(scrollYProgress, [0.2, 0.4, 0.6], [0, 1, 0]);
-  const textY = useTransform(scrollYProgress, [0.2, 0.4, 0.6], [50, 0, -50]);
+  const textOpacity = useTransform(scrollYProgress, [0.05, 0.12], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.05, 0.12], [30, 0]);
 
   return (
     <main
