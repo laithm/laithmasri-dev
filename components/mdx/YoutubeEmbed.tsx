@@ -1,8 +1,9 @@
+// components/mdx/YouTubeEmbed.tsx
 type Props = {
   id: string;
 };
 
-export const YouTubeEmbed = ({ id }: Props) => {
+export function YouTubeEmbed({ id }: Props) {
   return (
     <div className="aspect-w-16 aspect-h-9 my-6">
       <iframe
@@ -13,4 +14,4 @@ export const YouTubeEmbed = ({ id }: Props) => {
       ></iframe>
     </div>
   );
-};
+}
