@@ -1,13 +1,7 @@
 import { loadMdxPost } from "@/lib/loadMdxPost";
 
-import type { Metadata, ResolvingMetadata } from "next";
-
-interface PageProps {
-  params: { slug: string };
-}
-
-export default async function Page({ params }: PageProps) {
-  const { slug } = params; // destructured to avoid sync API warning, now to do it for the rest (insert crying emoji here)
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const { content, frontmatter } = await loadMdxPost("quant", slug);
 
   return (
