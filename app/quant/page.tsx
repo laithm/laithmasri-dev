@@ -32,11 +32,11 @@ export default async function QuantIndex() {
 
   return (
     <div className="prose prose-invert max-w-3xl mx-auto p-10">
-      <h1 className="text-4xl font-bold mb-6">Lab Posts</h1>
+      <h1 className="text-4xl font-bold mb-6">Quant Posts</h1>
       <ul>
         {posts.map((post) => (
           <li key={post.slug}>
-            <Link href={`/lab/${post.slug}`}>
+            <Link href={`/quant/${post.slug}`}>
               <strong>{post.title}</strong> <br />
               <span className="text-sm text-gray-500">{post.date}</span>
             </Link>
