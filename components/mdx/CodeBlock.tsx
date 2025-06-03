@@ -1,19 +1,10 @@
-type Props = {
-  children: React.ReactNode;
-  type?: "info" | "warning" | "error" | "success";
-};
+// components/mdx/CodeBlock.tsx
+import React from "react";
 
-export const Callout = ({ children, type = "info" }: Props) => {
-  const colors = {
-    info: "bg-blue-100 border-blue-500 text-blue-800",
-    warning: "bg-yellow-100 border-yellow-500 text-yellow-800",
-    error: "bg-red-100 border-red-500 text-red-800",
-    success: "bg-green-100 border-green-500 text-green-800",
-  };
-
+export function CodeBlock({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`border-l-4 p-4 my-6 rounded ${colors[type]}`}>
-      {children}
-    </div>
+    <pre className="bg-neutral-900 text-white p-4 rounded-md overflow-auto my-4 text-sm">
+      <code>{children}</code>
+    </pre>
   );
-};
+}
