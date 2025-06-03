@@ -1,48 +1,26 @@
-import fs from "fs/promises";
-import path from "path";
-import Link from "next/link";
-import { compileMDX } from "next-mdx-remote/rsc";
+import { loadMdxPost } from "@/lib/loadMdxPost";
 
-type Frontmatter = {
-  title: string;
-  date: string;
+type PageProps = {
+  params: {
+    slug: string;
+  };
 };
 
-export default async function EngineeringIndex() {
-  const folder = "engineering";
-  const files = await fs.readdir(path.join(process.cwd(), "content", folder));
-
-  const posts = await Promise.all(
-    files
-      .filter((f) => f.endsWith(".mdx"))
-      .map(async (file) => {
-        const filePath = path.join(process.cwd(), "content", folder, file);
-        const raw = await fs.readFile(filePath, "utf8");
-        const { frontmatter } = await compileMDX<Frontmatter>({
-          source: raw,
-          options: { parseFrontmatter: true },
-        });
-
-        return {
-          slug: file.replace(/\.mdx$/, ""),
-          ...frontmatter,
-        };
-      })
-  );
+export default async function Page({ params }: PageProps) {
+  const { slug } = params;
+  const { content, frontmatter } = await loadMdxPost("engineering", slug);
 
   return (
-    <div className="prose prose-invert max-w-3xl mx-auto p-10">
-      <h1 className="text-4xl font-bold mb-6">Engineering Notes</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/engineering/${post.slug}`}>
-              <strong>{post.title}</strong> <br />
-              <span className="text-sm text-gray-500">{post.date}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="prose prose-invert max-w-3xl mx-auto p-6">
+      <h1 className="text-4xl font-bold mb-2">{frontmatter.title}</h1>
+      <p className="text-gray-400 text-sm mb-8">{frontmatter.date}</p>
+      {content}
     </div>
   );
+}
+
+export async function generateStaticParams(): Promise<PageProps["params"][]> {
+  const { listMdxSlugs } = await import("@/lib/listMdxPosts");
+  const slugs = await listMdxSlugs("engineering");
+  return slugs.map((slug) => ({ slug }));
 }

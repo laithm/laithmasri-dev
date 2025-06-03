@@ -1,28 +1,26 @@
-import { notFound } from 'next/navigation';
-import { promises as fs } from 'fs';
-import path from 'path';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import { loadMdxPost } from "@/lib/loadMdxPost";
 
-export async function generateStaticParams() {
-  const files = await fs.readdir(path.join(process.cwd(), 'content/quant'));
-  return files
-    .filter((file) => file.endsWith('.mdx'))
-    .map((file) => ({
-      slug: file.replace(/\.mdx$/, ''),
-    }));
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function Page({ params }: PageProps) {
+  const { slug } = params;
+  const { content, frontmatter } = await loadMdxPost("quant", slug);
+
+  return (
+    <div className="prose prose-invert max-w-3xl mx-auto p-6">
+      <h1 className="text-4xl font-bold mb-2">{frontmatter.title}</h1>
+      <p className="text-gray-400 text-sm mb-8">{frontmatter.date}</p>
+      {content}
+    </div>
+  );
 }
 
-export default async function QuantPost({ params }: { params: { slug: string } }) {
-  const filePath = path.join(process.cwd(), 'content/quant', `${params.slug}.mdx`);
-
-  try {
-    const fileContent = await fs.readFile(filePath, 'utf8');
-    return (
-      <div className="prose prose-invert max-w-3xl mx-auto p-6">
-        <MDXRemote source={fileContent} />
-      </div>
-    );
-  } catch (error) {
-    notFound();
-  }
+export async function generateStaticParams(): Promise<PageProps["params"][]> {
+  const { listMdxSlugs } = await import("@/lib/listMdxPosts");
+  const slugs = await listMdxSlugs("quant");
+  return slugs.map((slug) => ({ slug }));
 }
