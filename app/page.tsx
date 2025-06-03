@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import ParticleBackground from "@/components/ParticleBackground";
 
 export default function Home() {
   const ref = useRef(null);
@@ -18,8 +19,10 @@ export default function Home() {
   return (
     <main
       ref={ref}
-      className="min-h-[135vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300"
+      className="relative min-h-[135vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden"
     >
+      <ParticleBackground />
+
       {/* Top-left name */}
       <div className="fixed top-4 left-6 z-50 text-lg font-semibold opacity-70">
         Laith Masri
@@ -56,7 +59,7 @@ export default function Home() {
       </motion.div>
 
       {/* Static Nav at bottom */}
-      <nav className="flex flex-col gap-6 mt-24 text-lg text-center sm:flex-row">
+      <nav className="flex z-10 flex-col gap-6 mt-24 text-lg text-center sm:flex-row">
         <a href="/lab" className="hover:underline">
           🧠 Lab Logs
         </a>

@@ -12,6 +12,9 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
     "@next/mdx": "^15.3.3",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
     "framer-motion": "^12.16.0",
     "gray-matter": "^4.0.3",
     "next": "15.3.2",
