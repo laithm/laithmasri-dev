@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <main
       ref={ref}
-      className="relative min-h-[135vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden"
+      className="relative min-h-[120vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden"
     >
       <ParticleBackground />
 
