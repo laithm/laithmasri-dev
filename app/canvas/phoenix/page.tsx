@@ -7,7 +7,7 @@ import {
   useAnimations,
 } from '@react-three/drei'
 import { Suspense, useRef, useEffect, useState } from 'react'
-import { Group, Material, Mesh } from 'three'
+import { Group, Material, Mesh, Color } from 'three'
 
 function PhoenixModel() {
   const ref = useRef<Group>(null)
@@ -20,7 +20,6 @@ function PhoenixModel() {
   useEffect(() => {
     if (!ref.current) return
 
-    // Make all materials double-sided
     scene.traverse((child) => {
       if ((child as Mesh).material) {
         const material = (child as Mesh).material as Material
@@ -31,16 +30,13 @@ function PhoenixModel() {
       }
     })
 
-    // Rotate to face forward
     ref.current.rotation.y = Math.PI
 
-    // Play idle animation
     if (actions && animations.length > 0) {
       actions[animations[0].name]?.reset().play()
     }
   }, [scene, actions, animations])
 
-  // Smooth spin on click
   useFrame(() => {
     if (!ref.current) return
     if (rotating) {
@@ -72,18 +68,23 @@ function PhoenixModel() {
 
 export default function PhoenixPage() {
   return (
-    <div className="h-screen w-screen bg-black">
+    <div className="h-screen w-screen">
       <Canvas camera={{ position: [0, 2, 8], fov: 45 }}>
+        {/* Safe background color */}
+        <color attach="background" args={['#000000']} />
+
+        {/* Safe lights */}
         <ambientLight intensity={0.4} />
-        <hemisphereLight
-          skyColor="#ffffff"
-          groundColor="#000000"
-          intensity={1.0}
-          position={[0, 5, 0]}
+        <directionalLight
+          intensity={0.6}
+          position={[5, 5, 5]}
+          castShadow
         />
+
         <Suspense fallback={null}>
           <PhoenixModel />
         </Suspense>
+
         <OrbitControls
           enablePan={false}
           minDistance={4}
