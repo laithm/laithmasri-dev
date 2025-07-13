@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientRoot from "@/components/ClientRoot";
+import RightSidebar from "@/components/RightSidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,8 +34,11 @@ export default function RootLayout({
         className={`antialiased ${geistSans.variable} ${geistMono.variable}`}
         suppressHydrationWarning
       >
+        {/* Using both components here */}
+        <RightSidebar />
         <ClientRoot>{children}</ClientRoot>
       </body>
     </html>
   );
 }
+
