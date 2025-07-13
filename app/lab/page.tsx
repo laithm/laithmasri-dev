@@ -8,7 +8,7 @@ type Frontmatter = {
   date: string;
 };
 
-export default async function LabIndex() {
+export default async function LabPage() {
   const folder = "lab";
   const files = await fs.readdir(path.join(process.cwd(), "content", folder));
 
@@ -31,18 +31,31 @@ export default async function LabIndex() {
   );
 
   return (
-    <div className="prose prose-invert max-w-3xl mx-auto p-10">
-      <h1 className="text-4xl font-bold mb-6">Lab Posts</h1>
-      <ul>
+  <div className="relative min-h-screen bg-black text-white px-6 py-20">
+    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-neutral-900 via-black to-neutral-900 opacity-70" />
+
+    <div className="max-w-3xl mx-auto">
+      <h1 className="text-5xl font-extrabold mb-10 text-white drop-shadow-lg">Lab Posts</h1>
+
+      <ul className="space-y-8">
         {posts.map((post) => (
-          <li key={post.slug}>
+          <li
+            key={post.slug}
+            className="border border-neutral-800 hover:border-neutral-600 transition-all rounded-xl p-6 bg-neutral-900/70 backdrop-blur-md shadow-md"
+          >
             <Link href={`/lab/${post.slug}`}>
-              <strong>{post.title}</strong> <br />
-              <span className="text-sm text-gray-500">{post.date}</span>
+              <div className="group cursor-pointer">
+                <h2 className="text-2xl font-semibold group-hover:underline decoration-dashed underline-offset-4">
+                  {post.title}
+                </h2>
+                <p className="text-sm text-neutral-400 mt-1">{post.date}</p>
+              </div>
             </Link>
           </li>
         ))}
       </ul>
     </div>
-  );
+  </div>
+);
 }
+

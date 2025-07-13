@@ -1,1 +1,0 @@
-This section provides polished / finished coding projects that are ready to be published.
