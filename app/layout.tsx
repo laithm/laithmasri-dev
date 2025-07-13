@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`antialiased ${geistSans.variable} ${geistMono.variable}`}
         suppressHydrationWarning
       >
-        {/* Using both components here */}
+        {/* ✅ Correctly use both components here */}
         <RightSidebar />
         <ClientRoot>{children}</ClientRoot>
       </body>
