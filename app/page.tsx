@@ -3,6 +3,53 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ParticleBackground from "@/components/ParticleBackground";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
+import { useRef as useThreeRef } from "react";
+import * as THREE from "three";
+
+function RotatingButtons() {
+  const groupRef = useThreeRef();
+  useFrame(({ clock }) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = clock.getElapsedTime() * 0.5;
+    }
+  });
+
+  const radius = 3;
+  const buttons = [
+    { label: "🧠 Lab Logs", link: "/lab" },
+    { label: "📚 Research", link: "/research" },
+    { label: "🔥 Phoenix", link: "/canvas/phoenix" },
+  ];
+
+  return (
+    <group ref={groupRef}>
+      {buttons.map((btn, idx) => {
+        const angle = (idx / buttons.length) * Math.PI * 2;
+        const x = radius * Math.cos(angle);
+        const z = radius * Math.sin(angle);
+
+        return (
+          <Html
+            key={btn.label}
+            position={[x, 0, z]}
+            transform
+            occlude
+            className="transition-transform hover:scale-110"
+          >
+            <a
+              href={btn.link}
+              className="px-4 py-2 rounded-md bg-white text-black font-semibold shadow-md backdrop-blur-sm hover:bg-gray-200"
+            >
+              {btn.label}
+            </a>
+          </Html>
+        );
+      })}
+    </group>
+  );
+}
 
 export default function Home() {
   const ref = useRef(null);
@@ -23,12 +70,10 @@ export default function Home() {
     >
       <ParticleBackground />
 
-      {/* Top-left name */}
       <div className="fixed top-4 left-6 z-50 text-lg font-semibold opacity-70">
         Laith Masri
       </div>
 
-      {/* Flying Logo */}
       <motion.div
         style={{ y: logoY, scale: logoScale }}
         className="z-10 mt-32 mb-20"
@@ -40,7 +85,6 @@ export default function Home() {
         />
       </motion.div>
 
-      {/* Scroll-Revealed Text */}
       <motion.div
         style={{ opacity: textOpacity, y: textY }}
         className="max-w-2xl text-xl text-center opacity-0"
@@ -58,18 +102,14 @@ export default function Home() {
         </p>
       </motion.div>
 
-      {/* Static Nav at bottom */}
-      <nav className="flex z-10 flex-col gap-6 mt-24 text-lg text-center sm:flex-row">
-        <a href="/lab" className="hover:underline">
-          🧠 Lab Logs
-        </a>
-        <a href="/research" className="hover:underline">
-          📚 Research
-        </a>
-        <a href="/canvas/phoenix" className="hover:underline">
-            See Phoenix Demo!
-        </a>
-      </nav>
+      <div className="relative w-full h-[500px]">
+        <Canvas camera={{ position: [0, 2, 8], fov: 50 }}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          <RotatingButtons />
+        </Canvas>
+      </div>
     </main>
   );
 }
+
