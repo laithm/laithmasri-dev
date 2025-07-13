@@ -5,11 +5,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import ParticleBackground from "@/components/ParticleBackground";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
-import { useRef as useThreeRef } from "react";
 import * as THREE from "three";
 
 function RotatingButtons() {
-  const groupRef = useThreeRef();
+  const groupRef = useRef<THREE.Group>(null);
+
   useFrame(({ clock }) => {
     if (groupRef.current) {
       groupRef.current.rotation.y = clock.getElapsedTime() * 0.5;
@@ -90,15 +90,13 @@ export default function Home() {
         className="max-w-2xl text-xl text-center opacity-0"
       >
         <p className="mb-4">
-          Engineering student @ Aston (MEng EEE). Exploring AI, circuits, and
-          financial systems.
+          Quant Research Intern @ Mt. Carmel Resources. Engineering student @ Aston (MEng EEE).
         </p>
         <p className="mb-4">
-          Passionate about building tangible systems — from silicon to strategy.
+          Building intelligent systems — from signal models to scalable strategies.
         </p>
         <p className="mb-12">
-          Roblox freelancer: game design, scripting, monetisation. Now stepping
-          into quant world.
+          I blend hardware, software, and market dynamics to build high-performance tools.
         </p>
       </motion.div>
 
