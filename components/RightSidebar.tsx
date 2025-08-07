@@ -7,14 +7,19 @@ import Link from "next/link";
 export default function RightSidebar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const edgeRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null); // NEW REF
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const screenWidth = window.innerWidth;
       const proximity = 60;
-      if (screenWidth - e.clientX < proximity) {
+
+      const isNearRightEdge = screenWidth - e.clientX < proximity;
+      const isSidebarHovered = sidebarRef.current?.matches(":hover");
+
+      if (isNearRightEdge) {
         setShowSidebar(true);
-      } else if (screenWidth - e.clientX > proximity + 100) {
+      } else if (!isSidebarHovered) {
         setShowSidebar(false);
       }
     };
@@ -32,6 +37,7 @@ export default function RightSidebar() {
       <AnimatePresence>
         {showSidebar && (
           <motion.aside
+            ref={sidebarRef} // NEW
             initial={{ x: 300 }}
             animate={{ x: 0 }}
             exit={{ x: 300 }}
@@ -42,16 +48,16 @@ export default function RightSidebar() {
 
             {/* Contact Me */}
             <Link href="/contact" className="hover:underline text-lg">
-              📬 Contact Me
+              Contact Me
             </Link>
 
             {/* CV Section */}
             <Link href="/cv" className="hover:underline text-lg">
-              📄 Master CV
+              Master CV
             </Link>
 
             <Link href="/canvas/cv" className="hover:underline text-lg">
-              🧬 Interactive 3D CV
+              Interactive 3D CV
             </Link>
           </motion.aside>
         )}

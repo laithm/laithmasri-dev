@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import ParticleBackground from "@/components/ParticleBackground";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -68,7 +67,7 @@ export default function Home() {
       ref={ref}
       className="relative min-h-[120vh] px-6 py-10 flex flex-col items-center bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 overflow-x-hidden"
     >
-      <ParticleBackground />
+
 
       <div className="fixed top-4 left-6 z-50 text-lg font-semibold opacity-70">
         Laith Masri
