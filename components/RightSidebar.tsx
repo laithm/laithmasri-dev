@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function RightSidebar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const edgeRef = useRef<HTMLDivElement>(null);
-  const sidebarRef = useRef<HTMLDivElement>(null); // NEW REF
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -33,11 +33,20 @@ export default function RightSidebar() {
       {/* Invisible right-edge trigger */}
       <div ref={edgeRef} className="fixed top-0 right-0 h-full w-[10px] z-40" />
 
+      {/* Arrow hint (only when sidebar is hidden) */}
+      {!showSidebar && (
+        <div className="fixed top-1/2 right-0 transform -translate-y-1/2 z-30">
+          <div className="w-5 h-5 bg-neutral-800 text-white flex items-center justify-center rounded-l-md shadow-md">
+            <span className="animate-pulse">➤</span>
+          </div>
+        </div>
+      )}
+
       {/* Animated sidebar */}
       <AnimatePresence>
         {showSidebar && (
           <motion.aside
-            ref={sidebarRef} // NEW
+            ref={sidebarRef}
             initial={{ x: 300 }}
             animate={{ x: 0 }}
             exit={{ x: 300 }}
@@ -46,12 +55,10 @@ export default function RightSidebar() {
           >
             <h2 className="text-xl font-bold mb-2">Navigation</h2>
 
-            {/* Contact Me */}
             <Link href="/contact" className="hover:underline text-lg">
               Contact Me
             </Link>
 
-            {/* CV Section */}
             <Link href="/cv" className="hover:underline text-lg">
               Master CV
             </Link>
